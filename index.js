@@ -1,9 +1,13 @@
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const express = require("express");
 const client = require("./db");
+const cors = require("cors"); // Add this line to import the 'cors' package
 
 const app = express();
 app.use(express.json()); // Add this line to parse JSON data in requests
+
+// Add the cors middleware to allow access from any origin
+app.use(cors());
 
 // Database connection
 client.connect((err, client) => {
