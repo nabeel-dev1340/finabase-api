@@ -29,6 +29,38 @@ app.get("/api/gainers", async (req, res) => {
   }
 });
 
+// API endpoint for retrieving GainersMA
+app.get("/api/gainersMA", async (req, res) => {
+  try {
+    // Fetch data from Gainers table
+    const gainersResult = await client.query(
+      "SELECT * FROM MA WHERE total>=0 ORDER BY total"
+    );
+
+    // Send the data as JSON
+    res.json(gainersResult.rows);
+  } catch (err) {
+    console.error("Error fetching GainersMA data:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// API endpoint for retrieving GainersMA
+app.get("/api/losersMA", async (req, res) => {
+  try {
+    // Fetch data from Gainers table
+    const gainersResult = await client.query(
+      "SELECT * FROM MA WHERE total<0 ORDER BY total DESC"
+    );
+
+    // Send the data as JSON
+    res.json(gainersResult.rows);
+  } catch (err) {
+    console.error("Error fetching GainersMA data:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 // API endpoint for retrieving Losers
 app.get("/api/losers", async (req, res) => {
   try {
