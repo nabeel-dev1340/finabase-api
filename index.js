@@ -34,7 +34,7 @@ app.get("/api/gainersMA", async (req, res) => {
   try {
     // Fetch data from Gainers table
     const gainersResult = await client.query(
-      "SELECT * FROM MA WHERE total>=0 ORDER BY total"
+      "SELECT * FROM MA WHERE total>=0 ORDER BY total DESC"
     );
 
     // Send the data as JSON
@@ -50,7 +50,7 @@ app.get("/api/losersMA", async (req, res) => {
   try {
     // Fetch data from Gainers table
     const gainersResult = await client.query(
-      "SELECT * FROM MA WHERE total<0 ORDER BY total DESC"
+      "SELECT * FROM MA WHERE total<0 ORDER BY total"
     );
 
     // Send the data as JSON
